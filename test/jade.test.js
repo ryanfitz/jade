@@ -876,6 +876,11 @@ module.exports = {
         assert.equal('<p>foo</p>', fn());
     },
     
+    'test .compile() escapes class attribute': function(assert){
+        var fn = jade.compile('.foo');
+        assert.includes(fn.toString(), "'class': ('foo')");
+    },
+    
     'test .compile() locals': function(assert){
         var fn = jade.compile('p= foo');
         assert.equal('<p>bar</p>', fn({ foo: 'bar' }));
